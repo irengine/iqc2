@@ -13,6 +13,9 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+    iqcapplication.cpp \
+    mainwindow.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += \
+    iqcapplication.h \
+    mainwindow.h
