@@ -14,8 +14,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
     iqcapplication.cpp \
-    mainwindow.cpp
+    iqcmainwindow.cpp
 
 HEADERS  += \
     iqcapplication.h \
-    mainwindow.h
+    iqcmainwindow.h
+
+FORMS +=
+
+RESOURCES += \
+    iqc.qrc
