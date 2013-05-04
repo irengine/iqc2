@@ -35,7 +35,7 @@ int main(int argc, char* argv[])
 
         splash->showMessage(QObject::tr("Loading plugins..."), bc, Qt::white);
 
-        w.show();
+        w.showMaximized();
         splash->finish(&w);
         delete splash;
 
