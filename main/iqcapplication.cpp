@@ -27,3 +27,19 @@ bool IqcApplication::notify(QObject* receiver, QEvent* event)
     // but you might continue if you use a different logging lib
     return false;
 }
+
+QSqlDatabase& IqcApplication::getConnection()
+{
+    if (!db.isOpen() || !db.isValid())
+    {
+        db = QSqlDatabase::addDatabase("QSQLITE");
+        db.setDatabaseName("iqc.dat");
+
+        if (!db.open()) {
+//            QMessageBox::warning(0, QObject::tr("Database Error"),
+//                                 db.lastError().text());
+            throw;
+        }
+    }
+    return db;
+}

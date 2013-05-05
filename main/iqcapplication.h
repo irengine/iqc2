@@ -2,6 +2,7 @@
 #define IQCAPPLICATION_H
 
 #include <QApplication>
+#include <QtSql>
 
 // Exception handling
 // Database access
@@ -15,6 +16,10 @@ public:
     ~IqcApplication();
 
     bool notify(QObject * receiver, QEvent * event);
+
+    QSqlDatabase& getConnection();
+private:
+    QSqlDatabase db;
 };
 
 #endif // IQCAPPLICATION_H
