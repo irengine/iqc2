@@ -82,12 +82,14 @@ void IqcMainWindow::createStatusBar()
 
 void IqcMainWindow::newTest()
 {
-
+    QMessageBox::information(this, tr("IQC System"),
+                             tr("<h2>New Test</h2>"));
 }
 
 void IqcMainWindow::openTest()
 {
-
+    QMessageBox::information(this, tr("IQC System"),
+                             tr("<h2>Open Test</h2>"));
 }
 
 void IqcMainWindow::moreTest()
