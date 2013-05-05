@@ -5,6 +5,7 @@
 #include <QDir>
 #include <QDebug>
 #include <QSplashScreen>
+#include "ruleinterface.h"
 
 QCoreApplication* createApplication(int &argc, char *argv[])
 {
@@ -39,11 +40,45 @@ void testLog()
     QLOG_FATAL() << "Fatal error!";
 }
 
+QDir directoryOf(const QString &subdir)
+{
+    QDir dir(QApplication::applicationDirPath());
+
+#if defined(Q_OS_WIN)
+    if (dir.dirName().toLower() == "debug"
+            || dir.dirName().toLower() == "release")
+        dir.cdUp();
+#elif defined(Q_OS_MAC)
+    if (dir.dirName() == "MacOS") {
+        dir.cdUp();
+        dir.cdUp();
+        dir.cdUp();
+    }
+#endif
+    dir.cd(subdir);
+    return dir;
+}
+
+void testLoadPlugins()
+{
+    QList<RuleInterface *> interfaces;
+
+    QDir pluginsDir = directoryOf("plugins");
+    foreach (QString fileName, pluginsDir.entryList(QDir::Files)) {
+        QPluginLoader loader(pluginsDir.absoluteFilePath(fileName));
+        if (RuleInterface *interface =
+                    qobject_cast<RuleInterface *>(loader.instance()))
+            interfaces.append(interface);
+    }
+
+    foreach (RuleInterface *interface, interfaces) {
+        interface->apply();
+    }
+}
+
 int main(int argc, char* argv[])
 {
     QScopedPointer<QCoreApplication> app(createApplication(argc, argv));
-
-    testLog();
 
     if (qobject_cast<IqcApplication *>(app.data())) {
         qDebug() << "release version.";
@@ -62,8 +97,10 @@ int main(int argc, char* argv[])
         IqcMainWindow w;
 
         splash->showMessage(QObject::tr("Loading data..."), bc, Qt::white);
+        testLog();
 
         splash->showMessage(QObject::tr("Loading plugins..."), bc, Qt::white);
+        testLoadPlugins();
 
         w.showMaximized();
         splash->finish(&w);

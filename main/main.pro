@@ -24,7 +24,8 @@ HEADERS  += \
     iqcmainwindow.h \
     ../lib/qslog/QsLogDest.h \
     ../lib/qslog/QsLog.h \
-    ../lib/qslog/QsDebugOutput.h
+    ../lib/qslog/QsDebugOutput.h \
+    ruleinterface.h
 
 FORMS +=
 
