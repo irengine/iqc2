@@ -17,7 +17,8 @@ SOURCES += main.cpp\
     iqcmainwindow.cpp \
     ../lib/qslog/QsLogDest.cpp \
     ../lib/qslog/QsLog.cpp \
-    ../lib/qslog/QsDebugOutput.cpp
+    ../lib/qslog/QsDebugOutput.cpp \
+    configurationdata.cpp
 
 HEADERS  += \
     iqcapplication.h \
@@ -25,7 +26,8 @@ HEADERS  += \
     ../lib/qslog/QsLogDest.h \
     ../lib/qslog/QsLog.h \
     ../lib/qslog/QsDebugOutput.h \
-    ruleinterface.h
+    ruleinterface.h \
+    configurationdata.h
 
 FORMS +=
 
