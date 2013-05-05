@@ -14,11 +14,17 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
     iqcapplication.cpp \
-    iqcmainwindow.cpp
+    iqcmainwindow.cpp \
+    ../lib/qslog/QsLogDest.cpp \
+    ../lib/qslog/QsLog.cpp \
+    ../lib/qslog/QsDebugOutput.cpp
 
 HEADERS  += \
     iqcapplication.h \
-    iqcmainwindow.h
+    iqcmainwindow.h \
+    ../lib/qslog/QsLogDest.h \
+    ../lib/qslog/QsLog.h \
+    ../lib/qslog/QsDebugOutput.h
 
 FORMS +=
 
